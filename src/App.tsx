@@ -1,14 +1,17 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
-import { CriarOrdemServicoProvider } from './contexts/CriarOrdemServicoContext/CriarOrdemServicoContext';
-import TelaCriarOrdemServico from './screens/TelaCriarOrdemServico/TelaCriarOrdemServico';
-import TelaAdicionarServico from './screens/TelaAdicionarServico/TelaAdicionarServico';
-import TelaVisualizarPDF from './screens/TelaVisualizarPDF/TelaVisualizarPDF';
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import "./App.css";
+import { CriarOrdemServicoProvider } from "./contexts/CriarOrdemServicoContext/CriarOrdemServicoContext";
+import TelaCriarOrdemServico from "./screens/TelaCriarOrdemServico/TelaCriarOrdemServico";
+import TelaAdicionarServico from "./screens/TelaAdicionarServico/TelaAdicionarServico";
+import TelaVisualizarPDF from "./screens/TelaVisualizarPDF/TelaVisualizarPDF";
+import LayoutPage from "./layout/LayoutPages/LayoutPage/LayoutPage";
+import Home from "./screens/Home/Home";
 
 export const routes = {
-  telaCriarOrdemServico: '/',
-  telaAdicionarServico: '/servico/add',
-  telaVisualizarPdf: '/pdf'
+  home: "/",
+  telaCliente: "/clientes",
+  telaServicos: "/servico",
+  telaPDF: "/pdf",
 };
 
 function App() {
@@ -16,9 +19,22 @@ function App() {
     <BrowserRouter>
       <CriarOrdemServicoProvider>
         <Routes>
-          <Route path={routes.telaCriarOrdemServico} element={<TelaCriarOrdemServico></TelaCriarOrdemServico>}></Route>
-          <Route path={routes.telaAdicionarServico} element={<TelaAdicionarServico></TelaAdicionarServico>}></Route>
-          <Route path={routes.telaVisualizarPdf} element={<TelaVisualizarPDF></TelaVisualizarPDF>}></Route>
+          <Route element={<LayoutPage />}>
+            <Route path={routes.home} element={<Home></Home>}></Route>
+            <Route
+              path={routes.telaCliente}
+              element={<TelaCriarOrdemServico></TelaCriarOrdemServico>}
+            ></Route>
+            <Route
+              path={routes.telaServicos}
+              element={<TelaAdicionarServico></TelaAdicionarServico>}
+            ></Route>
+            <Route
+              path={routes.telaPDF}
+              element={<TelaVisualizarPDF></TelaVisualizarPDF>}
+            ></Route>
+            <Route path="*" element={<Navigate to={routes.home} />}></Route>
+          </Route>
         </Routes>
       </CriarOrdemServicoProvider>
     </BrowserRouter>

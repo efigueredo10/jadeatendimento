@@ -2,3 +2,11 @@
   margin: 0 !important;
   padding: 0 !important;
 }
+
+:root {
+  --color1: #343838;
+  --color2: #005f6b;
+  --color3: #008c9e;
+  --color4: #00b4cc;
+  --color5: #00dffc;
+}

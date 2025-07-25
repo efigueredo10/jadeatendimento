@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
-import { routes } from '../App';
+import { useNavigate } from "react-router-dom";
+import { routes } from "../App";
 
 interface NavegarProps {
   rota: string;
@@ -11,23 +11,28 @@ export const useNavegar = () => {
     navigate(rota);
   };
 
-  const navegarParaTelaCriarOrdemServico = () => {
+  const navegarTelaCliente = () => {
     navegar({
-      rota: routes.telaCriarOrdemServico
+      rota: routes.telaCliente,
     });
   };
 
-  const navegarTelaAdicionarServico = () => {
+  const navegarTelaServicos = () => {
     navegar({
-      rota: routes.telaAdicionarServico
+      rota: routes.telaServicos,
     });
   };
 
-  const navegarParaTelaVisualizarPdf = () => {
+  const navegarTelaPDF = () => {
     navegar({
-      rota: routes.telaVisualizarPdf
+      rota: routes.telaPDF,
     });
   };
 
-  return { navegar, navegarParaTelaCriarOrdemServico, navegarTelaAdicionarServico, navegarParaTelaVisualizarPdf };
+  return {
+    navegar,
+    navegarTelaCliente,
+    navegarTelaServicos,
+    navegarTelaPDF,
+  };
 };

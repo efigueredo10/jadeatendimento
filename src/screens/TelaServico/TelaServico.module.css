@@ -4,3 +4,7 @@
   flex-direction: column;
   gap: 12px;
 }
+
+.iconeAdd {
+  font-size: 30px !important;
+}

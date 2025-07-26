@@ -4,21 +4,12 @@ import { Outlet, useLocation } from 'react-router-dom';
 import NavigateBar from '../components/NavigateBar/NavigateBar';
 import Header from '../components/Header/Header';
 import { routes } from '../../../App';
+import { useGlobalContext } from '../../../contexts/GlobalContext/GlobalContext';
 
 const LayoutPage = () => {
   // Hooks
   const location = useLocation();
-
-  const mapeamentoTitulos = {
-    [routes.home]: 'Home',
-    [routes.telaCliente]: 'Cliente',
-    [routes.telaServicos]: 'Serviços',
-    [routes.telaPDF]: 'PDF',
-  };
-
-  const obterTituloPorRota = () => {
-    return mapeamentoTitulos[location.pathname];
-  };
+  const { globalState } = useGlobalContext();
 
   const isHomePage = () => {
     return location.pathname == routes.home;
@@ -26,7 +17,11 @@ const LayoutPage = () => {
 
   return (
     <div className={style.layoutPage}>
-      <Header titulo={obterTituloPorRota()}></Header>
+      <Header
+        titulo={globalState?.infoPagina?.titulo}
+        botaoLeft={globalState?.infoPagina?.botoes?.esquerdo}
+        botaoRight={globalState?.infoPagina?.botoes?.direito}
+      ></Header>
       <Outlet></Outlet>
       {!isHomePage() && <NavigateBar></NavigateBar>}
     </div>

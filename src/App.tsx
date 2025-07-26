@@ -6,6 +6,7 @@ import TelaVisualizarPDF from './screens/TelaVisualizarPDF/TelaVisualizarPDF';
 import LayoutPage from './layout/LayoutPages/LayoutPage/LayoutPage';
 import Home from './screens/Home/Home';
 import TelaCliente from './screens/TelaCliente/TelaCliente';
+import { GlobalContextProvider } from './contexts/GlobalContext/GlobalContext';
 
 export const routes = {
   home: '/',
@@ -17,26 +18,28 @@ export const routes = {
 function App() {
   return (
     <BrowserRouter>
-      <CriarOrdemServicoProvider>
-        <Routes>
-          <Route element={<LayoutPage />}>
-            <Route path={routes.home} element={<Home></Home>}></Route>
-            <Route
-              path={routes.telaCliente}
-              element={<TelaCliente></TelaCliente>}
-            ></Route>
-            <Route
-              path={routes.telaServicos}
-              element={<TelaServico></TelaServico>}
-            ></Route>
-            <Route
-              path={routes.telaPDF}
-              element={<TelaVisualizarPDF></TelaVisualizarPDF>}
-            ></Route>
-            <Route path="*" element={<Navigate to={routes.home} />}></Route>
-          </Route>
-        </Routes>
-      </CriarOrdemServicoProvider>
+      <GlobalContextProvider>
+        <CriarOrdemServicoProvider>
+          <Routes>
+            <Route element={<LayoutPage />}>
+              <Route path={routes.home} element={<Home></Home>}></Route>
+              <Route
+                path={routes.telaCliente}
+                element={<TelaCliente></TelaCliente>}
+              ></Route>
+              <Route
+                path={routes.telaServicos}
+                element={<TelaServico></TelaServico>}
+              ></Route>
+              <Route
+                path={routes.telaPDF}
+                element={<TelaVisualizarPDF></TelaVisualizarPDF>}
+              ></Route>
+              <Route path="*" element={<Navigate to={routes.home} />}></Route>
+            </Route>
+          </Routes>
+        </CriarOrdemServicoProvider>
+      </GlobalContextProvider>
     </BrowserRouter>
   );
 }

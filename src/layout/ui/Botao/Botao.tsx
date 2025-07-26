@@ -7,9 +7,10 @@ import {
 import style from './Botao.module.css';
 
 interface Props {
-  children: ReactNode;
+  children?: ReactNode;
   size?: 'large' | 'normal' | 'small';
   borderRadius?: string;
+  icone?: ReactNode;
   onClick?: (event: MouseEvent) => void;
 }
 
@@ -17,6 +18,7 @@ const Botao = ({
   children,
   size = 'normal',
   borderRadius = '8px',
+  icone,
   onClick,
 }: Props) => {
   const obterEstilosBotao = () => {
@@ -46,6 +48,7 @@ const Botao = ({
       style={obterEstilosBotao()}
     >
       {children}
+      {icone}
     </button>
   );
 };

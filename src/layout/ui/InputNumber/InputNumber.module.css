@@ -1,0 +1,27 @@
+.inputContainer {
+  position: relative;
+  background-color: #f6f6f6;
+  border-radius: 8px;
+  padding: 8px !important;
+}
+
+.inputContainer label {
+  position: absolute;
+  left: 8px;
+  transition: 0.3s;
+  opacity: 0.8;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.labelSuspenso {
+  font-size: 11px;
+  top: -8px;
+}
+
+.inputContainer input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 12px;
+}

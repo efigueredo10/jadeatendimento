@@ -24,5 +24,5 @@
     "strict": false,
     "strictNullChecks": false
   },
-  "include": ["src"]
+  "include": ["src", "src/screens/TelaCliente/TelaCliente.tsx"]
 }

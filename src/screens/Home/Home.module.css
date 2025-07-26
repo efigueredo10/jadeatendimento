@@ -1,0 +1,26 @@
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  height: calc(100vh - 49px - 58px) !important;
+}
+
+.imgContainer {
+  width: 100%;
+  padding: 0 64px !important;
+}
+
+.homeContainer img {
+  width: 100%;
+}
+
+.info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}

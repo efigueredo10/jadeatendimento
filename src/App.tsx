@@ -1,17 +1,17 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import "./App.css";
-import { CriarOrdemServicoProvider } from "./contexts/CriarOrdemServicoContext/CriarOrdemServicoContext";
-import TelaCriarOrdemServico from "./screens/TelaCriarOrdemServico/TelaCriarOrdemServico";
-import TelaAdicionarServico from "./screens/TelaAdicionarServico/TelaAdicionarServico";
-import TelaVisualizarPDF from "./screens/TelaVisualizarPDF/TelaVisualizarPDF";
-import LayoutPage from "./layout/LayoutPages/LayoutPage/LayoutPage";
-import Home from "./screens/Home/Home";
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import './App.css';
+import { CriarOrdemServicoProvider } from './contexts/CriarOrdemServicoContext/CriarOrdemServicoContext';
+import TelaAdicionarServico from './screens/TelaAdicionarServico/TelaAdicionarServico';
+import TelaVisualizarPDF from './screens/TelaVisualizarPDF/TelaVisualizarPDF';
+import LayoutPage from './layout/LayoutPages/LayoutPage/LayoutPage';
+import Home from './screens/Home/Home';
+import TelaCliente from './screens/TelaCliente/TelaCliente';
 
 export const routes = {
-  home: "/",
-  telaCliente: "/clientes",
-  telaServicos: "/servico",
-  telaPDF: "/pdf",
+  home: '/',
+  telaCliente: '/clientes',
+  telaServicos: '/servico',
+  telaPDF: '/pdf',
 };
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
             <Route path={routes.home} element={<Home></Home>}></Route>
             <Route
               path={routes.telaCliente}
-              element={<TelaCriarOrdemServico></TelaCriarOrdemServico>}
+              element={<TelaCliente></TelaCliente>}
             ></Route>
             <Route
               path={routes.telaServicos}

@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { CriarOrdemServicoProvider } from './contexts/CriarOrdemServicoContext/CriarOrdemServicoContext';
-import TelaAdicionarServico from './screens/TelaAdicionarServico/TelaAdicionarServico';
+import TelaServico from './screens/TelaServico/TelaServico';
 import TelaVisualizarPDF from './screens/TelaVisualizarPDF/TelaVisualizarPDF';
 import LayoutPage from './layout/LayoutPages/LayoutPage/LayoutPage';
 import Home from './screens/Home/Home';
@@ -27,7 +27,7 @@ function App() {
             ></Route>
             <Route
               path={routes.telaServicos}
-              element={<TelaAdicionarServico></TelaAdicionarServico>}
+              element={<TelaServico></TelaServico>}
             ></Route>
             <Route
               path={routes.telaPDF}

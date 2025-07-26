@@ -1,0 +1,6 @@
+.containerListaServicos {
+  padding: 32px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

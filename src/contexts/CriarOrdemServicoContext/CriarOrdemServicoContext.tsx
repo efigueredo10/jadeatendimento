@@ -1,5 +1,6 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import type { ServicoCardProps } from '../../screens/TelaServico/components/ServicoCard/ServicoCard';
+import { useCookie } from '../../hooks/useCookies';
 
 export interface Cliente {
   infoCliente: InfoCliente;
@@ -30,7 +31,7 @@ export interface OrdemServico {
 interface CriarOrdemServicoContextTypes {
   ordemServico: OrdemServico;
   cliente: Cliente;
-  setCliente: React.Dispatch<React.SetStateAction<Cliente>>;
+  alterarCliente: (callback: (clienteAtual: Cliente) => Cliente) => void;
   adicionarServico: (servico: ServicoCardProps) => void;
   removerServico: (servicoId: string) => void;
   limparServicos: () => void;
@@ -54,16 +55,34 @@ const clienteInicial = {
   },
 };
 
+const ordemServicoInicial = {
+  total: 0,
+  servicos: [],
+};
+
 export const CriarOrdemServicoContext = createContext<
   CriarOrdemServicoContextTypes | undefined
 >(undefined);
 
 export function CriarOrdemServicoProvider({ children }) {
+  // Hooks
+  const { setCookie, getCookie } = useCookie();
+
+  // States
   const [cliente, setCliente] = useState<Cliente>(clienteInicial);
-  const [ordemServico, setOrdemServico] = useState<OrdemServico>({
-    total: 0,
-    servicos: [],
-  });
+  const [ordemServico, setOrdemServico] =
+    useState<OrdemServico>(ordemServicoInicial);
+
+  useEffect(() => {
+    const clienteCookie = getCookie('cliente');
+    const ordemServicoCookie = getCookie('ordemServico');
+    console.log(clienteCookie);
+    console.log(ordemServicoCookie);
+    setCliente(clienteCookie ? clienteCookie : clienteInicial);
+    setOrdemServico(
+      ordemServicoCookie ? ordemServicoCookie : ordemServicoInicial
+    );
+  }, []);
 
   const obterTotal = (servicos: ServicoCardProps[]) => {
     return servicos.reduce(
@@ -72,9 +91,27 @@ export function CriarOrdemServicoProvider({ children }) {
     );
   };
 
+  const alterarOrdemServico = (
+    callback: (ordemServicoAtual: OrdemServico) => OrdemServico
+  ) => {
+    setOrdemServico(prev => {
+      const novoValor = callback(prev);
+      setCookie('ordemServico', novoValor);
+      return novoValor;
+    });
+  };
+
+  const alterarCliente = (callback: (clienteAtual: Cliente) => Cliente) => {
+    setCliente(prev => {
+      const novoValor = callback(prev);
+      setCookie('cliente', novoValor);
+      return novoValor;
+    });
+  };
+
   const adicionarServico = (servico: ServicoCardProps) => {
     if (!servico) return;
-    setOrdemServico(prev => ({
+    alterarOrdemServico(prev => ({
       ...prev,
       servicos: [...prev.servicos, servico],
       total: obterTotal([...prev.servicos, servico]),
@@ -82,7 +119,7 @@ export function CriarOrdemServicoProvider({ children }) {
   };
 
   const removerServico = (servicoId: string) => {
-    setOrdemServico(prev => ({
+    alterarOrdemServico(prev => ({
       ...prev,
       servicos: {
         ...prev.servicos,
@@ -95,7 +132,7 @@ export function CriarOrdemServicoProvider({ children }) {
   };
 
   const limparServicos = () => {
-    setOrdemServico(prev => ({
+    alterarOrdemServico(prev => ({
       ...prev,
       servicos: [],
       total: 0,
@@ -103,14 +140,14 @@ export function CriarOrdemServicoProvider({ children }) {
   };
 
   const limparCliente = () => {
-    setCliente(clienteInicial);
+    alterarCliente(() => clienteInicial);
   };
 
   return (
     <CriarOrdemServicoContext.Provider
       value={{
         cliente,
-        setCliente,
+        alterarCliente,
         adicionarServico,
         removerServico,
         limparServicos,

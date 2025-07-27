@@ -11,10 +11,10 @@ import InputNumber from '../../layout/ui/InputNumber/InputNumber';
 
 const TelaCliente = () => {
   // Hooks
-  const { setCliente, cliente, limparCliente } = useCriarOrdemServico();
+  const { alterarCliente, cliente, limparCliente } = useCriarOrdemServico();
 
   const setarInfoCliente = (valor: string | number, key: keyof InfoCliente) => {
-    setCliente(prev => ({
+    alterarCliente(prev => ({
       ...prev,
       infoCliente: {
         ...prev.infoCliente,
@@ -24,10 +24,10 @@ const TelaCliente = () => {
   };
 
   const setarEndereco = (valor: string, key: keyof Endereco) => {
-    setCliente(prev => ({
+    alterarCliente(prev => ({
       ...prev,
       endereco: {
-      ...prev.endereco,
+        ...prev.endereco,
         [key]: valor,
       },
     }));
@@ -52,27 +52,27 @@ const TelaCliente = () => {
         <h2>Informações</h2>
         <Input
           label="Nome"
-          value={cliente?.infoCliente.nome}
+          value={cliente?.infoCliente?.nome}
           setValue={valor => setarInfoCliente(valor, 'nome')}
         ></Input>
         <InputNumber
           label="CPF"
-          value={cliente?.infoCliente.cpf}
+          value={cliente?.infoCliente?.cpf}
           setValue={valor => setarInfoCliente(valor, 'cpf')}
         ></InputNumber>
         <InputNumber
           label="CNPJ"
-          value={cliente?.infoCliente.cnpj}
+          value={cliente?.infoCliente?.cnpj}
           setValue={valor => setarInfoCliente(valor, 'cnpj')}
         ></InputNumber>
         <InputNumber
           label="Telefone"
-          value={cliente?.infoCliente.telefone}
+          value={cliente?.infoCliente?.telefone}
           setValue={valor => setarInfoCliente(valor, 'telefone')}
         ></InputNumber>
         <Input
           label="E-mail"
-          value={cliente?.infoCliente.email}
+          value={cliente?.infoCliente?.email}
           setValue={valor => setarInfoCliente(valor, 'email')}
         ></Input>
       </div>
@@ -80,27 +80,27 @@ const TelaCliente = () => {
         <h2>Endereço</h2>
         <Input
           label="Cidade"
-          value={cliente?.endereco.cidade}
+          value={cliente?.endereco?.cidade}
           setValue={valor => setarEndereco(valor, 'cidade')}
         ></Input>
         <Input
           label="Rua"
-          value={cliente?.endereco.rua}
+          value={cliente?.endereco?.rua}
           setValue={valor => setarEndereco(valor, 'rua')}
         ></Input>
         <Input
           label="Bairro"
-          value={cliente?.endereco.bairro}
+          value={cliente?.endereco?.bairro}
           setValue={valor => setarEndereco(valor, 'bairro')}
         ></Input>
         <Input
           label="Número"
-          value={cliente?.endereco.numero}
+          value={cliente?.endereco?.numero}
           setValue={valor => setarEndereco(valor, 'numero')}
         ></Input>
         <Input
           label="Complemento"
-          value={cliente?.endereco.complemento}
+          value={cliente?.endereco?.complemento}
           setValue={valor => setarEndereco(valor, 'complemento')}
         ></Input>
       </div>

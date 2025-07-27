@@ -2,6 +2,8 @@ import { createPortal } from 'react-dom';
 import style from './Modal.module.css';
 import { memo, type ReactNode } from 'react';
 import { IoMdClose } from 'react-icons/io';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useSlideUpModal } from '../../../../hooks/useSlideFadeIn';
 
 interface Props {
   open: boolean;
@@ -11,20 +13,24 @@ interface Props {
 }
 
 const Modal = ({ open, closeModal, children, titulo }: Props) => {
-  if (!open) return;
+  const animation = useSlideUpModal();
   return createPortal(
-    <>
-      <div className={style.backdrop}></div>
-      <div className={style.modalContainer}>
-        <div className={style.titulo}>
-          <h4>{titulo}</h4>
-          <div onClick={closeModal} className={style.close}>
-            <IoMdClose size={20} />
-          </div>
+    <AnimatePresence>
+      {open && (
+        <div>
+          <div className={style.backdrop}></div>
+          <motion.div {...animation} className={style.modalContainer}>
+            <div className={style.titulo}>
+              <h4>{titulo}</h4>
+              <div onClick={closeModal} className={style.close}>
+                <IoMdClose size={20} />
+              </div>
+            </div>
+            <div className={style.children}>{children}</div>
+          </motion.div>
         </div>
-        <div className={style.children}>{children}</div>
-      </div>
-    </>,
+      )}
+    </AnimatePresence>,
     document.body
   );
 };

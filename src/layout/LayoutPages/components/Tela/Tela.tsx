@@ -2,6 +2,8 @@ import { memo, useEffect, type ReactNode } from 'react';
 import style from './Tela.module.css';
 import type { InfoPagina } from '../../../../contexts/GlobalContext/GlobalContext.types';
 import { useGlobalContext } from '../../../../contexts/GlobalContext/GlobalContext';
+import { motion } from 'framer-motion';
+import { useFadeIn } from '../../../../hooks/useFadeIn';
 
 interface Props {
   infoTela: InfoPagina;
@@ -21,15 +23,18 @@ const Tela = ({
   // States
   const { setarInfoPagina } = useGlobalContext();
 
+  // Hooks
+  const fade = useFadeIn(0.3);
+
   useEffect(() => {
     setarInfoPagina(infoTela);
   }, []);
 
   return (
-    <div className={className}>
+    <motion.div {...fade} className={className}>
       {exibirToolbar && <div className={style.toolbar}>{toolbar}</div>}
       {children}
-    </div>
+    </motion.div>
   );
 };
 

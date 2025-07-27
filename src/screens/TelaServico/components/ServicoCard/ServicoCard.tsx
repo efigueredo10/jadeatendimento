@@ -4,6 +4,8 @@ import { PiHammer } from 'react-icons/pi';
 import { BiEdit } from 'react-icons/bi';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import useOnClickOutside from '../../../../hooks/useOnClickOutside';
+import { useCardAppearAnimation } from '../../../../hooks/useCardAppearAnimation';
+import { motion } from 'framer-motion';
 
 export interface ServicoCardProps {
   id?: string;
@@ -25,6 +27,9 @@ const ServicoCard = ({
   // Refs
   const containerRef = useOnClickOutside(() => setMostrarOpcoes(false));
 
+  // Hooks
+  const animation = useCardAppearAnimation();
+
   function formatarNumeroBrasileiro(valor: number): string {
     return valor.toLocaleString('pt-BR', {
       minimumFractionDigits: 2,
@@ -37,7 +42,9 @@ const ServicoCard = ({
   };
 
   return (
-    <div
+    <motion.div
+      {...animation}
+      layout
       ref={containerRef}
       onClick={toogleMostrarOpcoes}
       className={style.servicoCardContainer}
@@ -69,7 +76,7 @@ const ServicoCard = ({
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

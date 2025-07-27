@@ -5,10 +5,12 @@ import {
   type InfoCliente,
 } from '../../contexts/CriarOrdemServicoContext/CriarOrdemServicoContext';
 import Input from '../../layout/ui/Input/Input';
+import Tela from '../../layout/LayoutPages/components/Tela/Tela';
+import Botao from '../../layout/ui/Botao/Botao';
 
 const TelaCliente = () => {
   // Hooks
-  const { setCliente, cliente } = useCriarOrdemServico();
+  const { setCliente, cliente, limparCliente } = useCriarOrdemServico();
 
   const setarInfoCliente = (valor: string, key: keyof InfoCliente) => {
     setCliente(prev => ({
@@ -31,7 +33,20 @@ const TelaCliente = () => {
   };
 
   return (
-    <div className={style.telaContainer}>
+    <Tela
+      className={style.telaContainer}
+      infoTela={{
+        titulo: 'Cliente',
+      }}
+      exibirToolbar={true}
+      toolbar={
+        <div className={style.toolbar}>
+          <Botao onClick={limparCliente} size="normal">
+            Limpar
+          </Botao>
+        </div>
+      }
+    >
       <div className={style.infoCliente}>
         <h2>Informações</h2>
         <Input
@@ -88,7 +103,7 @@ const TelaCliente = () => {
           setValue={valor => setarEndereco(valor, 'complemento')}
         ></Input>
       </div>
-    </div>
+    </Tela>
   );
 };
 

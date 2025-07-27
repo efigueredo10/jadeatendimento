@@ -3,33 +3,39 @@ import style from './TelaServico.module.css';
 import Apresentacao from '../../layout/LayoutPages/components/Apresentacao/Apresentacao';
 import ServicoCard from './components/ServicoCard/ServicoCard';
 import Tela from '../../layout/LayoutPages/components/Tela/Tela';
-import Botao from '../../layout/ui/Botao/Botao';
-import { MdAdd } from 'react-icons/md';
 import useModal from '../../hooks/useModal';
 import Modal from '../../layout/LayoutPages/components/Modal/Modal';
 import FormularioAddServico from './components/FormularioAddServico/FormularioAddServico';
 import { useCriarOrdemServico } from '../../contexts/CriarOrdemServicoContext/CriarOrdemServicoContext';
+import Botao from '../../layout/ui/Botao/Botao';
+import { MdAdd } from 'react-icons/md';
 
 const TelaServico = () => {
   // Hooks
   const { abrirModal, fecharModal, modalOpen } = useModal();
-  const { servicos } = useCriarOrdemServico();
+  const { ordemServico, limparServicos } = useCriarOrdemServico();
 
   return (
     <Tela
       className={style.telaContainer}
       infoTela={{
         titulo: 'Serviços',
-        botoes: {
-          direito: (
-            <Botao
-              onClick={abrirModal}
-              size="small"
-              icone={<MdAdd size={20} className={style.iconeAdd} />}
-            ></Botao>
-          ),
-        },
       }}
+      exibirToolbar={ordemServico?.servicos?.length > 0}
+      toolbar={
+        <div className={style.toolbar}>
+          <Botao onClick={limparServicos} size="normal">
+            Limpar
+          </Botao>
+          <Botao
+            onClick={abrirModal}
+            size="normal"
+            icone={<MdAdd size={20} className={style.iconeAdd} />}
+          >
+            Adicionar
+          </Botao>
+        </div>
+      }
     >
       <Modal
         titulo="Adicionar Serviço"
@@ -38,11 +44,11 @@ const TelaServico = () => {
       >
         <FormularioAddServico closeModal={fecharModal}></FormularioAddServico>
       </Modal>
-      {servicos.length == 0 ? (
+      {ordemServico?.servicos?.length == 0 ? (
         <Apresentacao
           botaoProps={{
             titulo: 'Adicionar Serviço',
-            onClick: () => alert('programar aqui'),
+            onClick: abrirModal,
           }}
           titulo="Bora ficar rico"
           imagemProps={{
@@ -52,8 +58,8 @@ const TelaServico = () => {
         ></Apresentacao>
       ) : (
         <div className={style.containerListaServicos}>
-          {servicos.map(servico => (
-            <ServicoCard {...servico}></ServicoCard>
+          {ordemServico?.servicos?.map(servico => (
+            <ServicoCard {...servico} key={servico.id}></ServicoCard>
           ))}
         </div>
       )}

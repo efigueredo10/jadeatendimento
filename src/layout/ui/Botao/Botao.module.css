@@ -5,6 +5,10 @@
   font-size: 12px;
   color: #fff;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 }
 
 .botao:focus,
@@ -13,13 +17,16 @@
 }
 
 .small {
+  height: 30px;
   padding: 4px 6px !important;
 }
 
 .normal {
+  height: 35px;
   padding: 8px 12px !important;
 }
 
 .large {
+  height: 40px;
   padding: 12px 18px !important;
 }

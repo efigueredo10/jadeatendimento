@@ -1,4 +1,4 @@
-import { memo, useState, useEffect } from 'react';
+import { memo, useState, useEffect, useRef } from 'react';
 import style from './InputNumber.module.css';
 
 interface Props {
@@ -8,9 +8,12 @@ interface Props {
   setValue: (valor: number) => void;
 }
 
-const Input = ({ label, value, setValue, casasDecimais = 2 }: Props) => {
+const Input = ({ label, value, setValue, casasDecimais = 0 }: Props) => {
   const [focus, setFocus] = useState(false);
   const [texto, setTexto] = useState('');
+
+  // Ref
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Quando perde foco ou atualiza valor externo
   useEffect(() => {
@@ -63,9 +66,15 @@ const Input = ({ label, value, setValue, casasDecimais = 2 }: Props) => {
     }`;
   };
 
+  const setarFocoInput = () => {
+    setFocus(true);
+    inputRef?.current?.focus();
+  };
+
   return (
-    <div className={style.inputContainer}>
+    <div onClick={setarFocoInput} className={style.inputContainer}>
       <input
+        ref={inputRef}
         type="text"
         inputMode="numeric"
         value={texto}

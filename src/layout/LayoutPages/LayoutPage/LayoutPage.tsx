@@ -22,7 +22,9 @@ const LayoutPage = () => {
         botaoLeft={globalState?.infoPagina?.botoes?.esquerdo}
         botaoRight={globalState?.infoPagina?.botoes?.direito}
       ></Header>
-      <Outlet></Outlet>
+      <div className={style.outlet}>
+        <Outlet></Outlet>
+      </div>
       {!isHomePage() && <NavigateBar></NavigateBar>}
     </div>
   );

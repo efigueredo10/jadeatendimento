@@ -1,3 +1,14 @@
 .layoutPage {
   height: calc(100vh - 58px) !important;
+  overflow: hidden;
+  position: relative;
+}
+
+.outlet {
+  width: 100vw;
+  overflow-y: auto;
+  position: absolute;
+  top: 49px;
+  bottom: 58px;
+  height: calc(100vh - 58px - 49px) !important;
 }

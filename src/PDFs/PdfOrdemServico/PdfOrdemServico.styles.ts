@@ -1,38 +1,69 @@
 import { StyleSheet } from '@react-pdf/renderer';
 
-const primaryColor = '#7f1212';
+const primaryColor = '#000';
 
 const widthsColunas = {
-  coluna0: 100,
-  coluna1: 120,
-  coluna2: 300,
-  coluna3: 150,
-  coluna4: 60,
-  coluna5: 110,
-  coluna6: 100,
+  coluna0: 150,
+  coluna1: 300,
+  coluna2: 60,
+  coluna3: 100,
 };
 
 const estiloListagemHeader = {
-  padding: '4px',
+  padding: '12px',
   fontFamily: 'Helvetica-Bold',
+  fontSize: '12px',
 };
 
 const estiloListagemBody = {
-  padding: '4px',
+  padding: '6px',
+  fontSize: '10px',
 };
+
+const defaultPadding = '32px';
 
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Helvetica',
     fontSize: 10,
     padding: 0,
+    paddingBottom: 32,
+    paddingTop: 32,
     display: 'flex',
-    gap: '8px',
+    gap: 8,
     flexDirection: 'column',
-    justifyContent: 'space-between',
+  },
+  relativeWrapper: {
+    marginTop: -32, // negativo para compensar o padding do page
+    marginLeft: -32,
+    marginRight: -32,
   },
   header: {},
-  infoCliente: {},
+  infoCliente: {
+    padding: `0 ${defaultPadding}`,
+    fontSize: '14px',
+    gap: '8px',
+  },
+  clienteData: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: '16px',
+  },
+  headerImagem: {
+    width: '100%',
+  },
+  headerTitle: {
+    padding: `16px ${defaultPadding}`,
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    fontSize: '18px',
+    fontFamily: 'Helvetica-Bold',
+  },
 
   // ANTIGO
   bordaConteudo: {
@@ -103,7 +134,10 @@ const styles = StyleSheet.create({
     padding: '8px',
     // borderBottom: `1px dashed ${primaryColor}`
   },
-  listagemProdutos: {},
+  listagem: {
+    padding: `0 ${defaultPadding}`,
+  },
+  listagemProdutos: { paddingTop: '12px' },
   listagemProdutosHeader: {
     backgroundColor: primaryColor,
     display: 'flex',
@@ -117,6 +151,7 @@ const styles = StyleSheet.create({
     minWidth: widthsColunas.coluna0,
     maxWidth: widthsColunas.coluna0,
     borderRight: `1px solid #888888`,
+    borderLeft: `1px solid #888888`,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -150,38 +185,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     ...estiloListagemHeader,
   },
-  headerColuna4: {
-    width: widthsColunas.coluna4,
-    borderRight: `1px solid #888888`,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    ...estiloListagemHeader,
-  },
-  headerColuna5: {
-    width: widthsColunas.coluna5,
-    borderRight: `1px solid #888888`,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    ...estiloListagemHeader,
-  },
-  headerColuna6: {
-    width: widthsColunas.coluna6,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    ...estiloListagemHeader,
-  },
   listagemProdutosBody: {},
   linhaProduto: {
     display: 'flex',
     flexDirection: 'row',
     fontSize: 9,
     fontWeight: 'bold',
+    borderTop: `1px solid #888888`,
     borderBottom: `1px solid #888888`,
   },
   bodyColuna0: {
@@ -193,7 +203,9 @@ const styles = StyleSheet.create({
     minWidth: widthsColunas.coluna0,
     maxWidth: widthsColunas.coluna0,
     padding: '4px',
-    borderRight: `1px solid #888888`,
+    borderLeft: `2px solid #888888`,
+    borderRight: `2px solid #888888`,
+    ...estiloListagemBody,
   },
   bodyColuna1: {
     width: widthsColunas.coluna1,
@@ -218,36 +230,11 @@ const styles = StyleSheet.create({
     borderRight: `1px solid #888888`,
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    ...estiloListagemBody,
-  },
-  bodyColuna4: {
-    width: widthsColunas.coluna4,
-    borderRight: `1px solid #888888`,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    ...estiloListagemBody,
-  },
-  bodyColuna5: {
-    width: widthsColunas.coluna5,
-    borderRight: `1px solid #888888`,
-    display: 'flex',
-    flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
     ...estiloListagemBody,
   },
-  bodyColuna6: {
-    width: widthsColunas.coluna6,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    ...estiloListagemBody,
-  },
+
   linhaTotalObservacoes: {
     display: 'flex',
     justifyContent: 'space-between',

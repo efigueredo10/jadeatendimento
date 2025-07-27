@@ -4,7 +4,6 @@ import { CriarOrdemServicoProvider } from './contexts/CriarOrdemServicoContext/C
 import TelaServico from './screens/TelaServico/TelaServico';
 import TelaVisualizarPDF from './screens/TelaVisualizarPDF/TelaVisualizarPDF';
 import LayoutPage from './layout/LayoutPages/LayoutPage/LayoutPage';
-import Home from './screens/Home/Home';
 import TelaCliente from './screens/TelaCliente/TelaCliente';
 import { GlobalContextProvider } from './contexts/GlobalContext/GlobalContext';
 
@@ -22,7 +21,6 @@ function App() {
         <CriarOrdemServicoProvider>
           <Routes>
             <Route element={<LayoutPage />}>
-              <Route path={routes.home} element={<Home></Home>}></Route>
               <Route
                 path={routes.telaCliente}
                 element={<TelaCliente></TelaCliente>}
@@ -35,7 +33,10 @@ function App() {
                 path={routes.telaPDF}
                 element={<TelaVisualizarPDF></TelaVisualizarPDF>}
               ></Route>
-              <Route path="*" element={<Navigate to={routes.home} />}></Route>
+              <Route
+                path="*"
+                element={<Navigate to={routes.telaCliente} />}
+              ></Route>
             </Route>
           </Routes>
         </CriarOrdemServicoProvider>

@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 export const estadoInicialGlobalContext: GlobalState = {
   infoPagina: {
-    titulo: 'PÁGINA SEM TÍTULO',
+    titulo: '',
   },
 };
 

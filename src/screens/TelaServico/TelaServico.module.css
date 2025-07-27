@@ -1,5 +1,6 @@
 .containerListaServicos {
   padding: 32px !important;
+  padding-top: 0 !important;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -7,4 +8,12 @@
 
 .iconeAdd {
   font-size: 30px !important;
+}
+
+.toolbar {
+  padding: 0 32px !important;
+  padding-bottom: 0 !important;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }

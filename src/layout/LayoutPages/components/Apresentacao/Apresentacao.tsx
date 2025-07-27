@@ -4,7 +4,7 @@ import useFloatingEffect from '../../../../hooks/useFloatingEffect/useFloatingEf
 import Botao from '../../../ui/Botao/Botao';
 
 interface Props {
-  titulo: string;
+  titulo?: string;
   botaoProps: {
     titulo: string;
     onClick: () => void;
@@ -36,7 +36,9 @@ const Apresentacao = ({
       </div>
       <div className={style.info}>
         <h3>{titulo}</h3>
-        <Botao onClick={botaoProps.onClick}>{botaoProps.titulo}</Botao>
+        <Botao size="large" onClick={botaoProps.onClick}>
+          {botaoProps.titulo}
+        </Botao>
       </div>
     </div>
   );

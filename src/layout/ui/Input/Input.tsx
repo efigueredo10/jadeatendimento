@@ -1,4 +1,4 @@
-import { memo, useState, type ChangeEvent } from 'react';
+import { memo, useRef, useState, type ChangeEvent } from 'react';
 import style from './Input.module.css';
 
 interface Props {
@@ -10,6 +10,9 @@ interface Props {
 const Input = ({ value, label, setValue }: Props) => {
   const [focus, setFocus] = useState(false);
 
+  // Ref
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
@@ -20,9 +23,15 @@ const Input = ({ value, label, setValue }: Props) => {
     }
   };
 
+  const setarFocoInput = () => {
+    setFocus(true);
+    inputRef?.current?.focus();
+  };
+
   return (
-    <div className={style.inputContainer}>
+    <div onClick={setarFocoInput} className={style.inputContainer}>
       <input
+        ref={inputRef}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         type="text"

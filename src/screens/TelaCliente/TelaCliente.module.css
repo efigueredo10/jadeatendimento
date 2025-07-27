@@ -1,8 +1,8 @@
 .telaContainer {
   padding: 32px !important;
+  padding-top: 0 !important;
   display: flex;
   flex-direction: column;
-  gap: 32px;
 }
 
 .infoCliente,
@@ -12,7 +12,18 @@
   gap: 12px;
 }
 
+.infoCliente {
+  padding-bottom: 24px !important;
+}
+
 .infoCliente h2,
 .enderecoCliente h2 {
   font-size: 24px;
+}
+
+.toolbar {
+  padding-bottom: 0 !important;
+  width: 100%;
+  display: flex;
+  justify-content: end;
 }

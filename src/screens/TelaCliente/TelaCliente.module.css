@@ -3,7 +3,7 @@
   padding-top: 0 !important;
   display: flex;
   flex-direction: column;
-  margin-bottom: 32px;
+  margin-bottom: 32px !important;
 }
 
 .infoCliente,

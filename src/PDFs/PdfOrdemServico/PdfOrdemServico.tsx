@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const PdfOrdemServico = ({ ordemServico, cliente }: Props) => {
-  const criarTextoInfo = (titulo: string, valor: string) => {
+  const criarTextoInfo = (titulo: string, valor: string | number) => {
     return (
       <View style={styles.text}>
         <Text style={styles.boldText}>{titulo}: </Text>

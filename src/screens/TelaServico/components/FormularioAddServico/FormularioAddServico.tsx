@@ -34,21 +34,23 @@ const FormularioAddServico = ({ closeModal }: Props) => {
   return (
     <div className={style.formulario}>
       <Input
-        label="Titulo"
+        label="Título"
         value={titulo}
         setValue={valor => setTitulo(valor)}
       ></Input>
       <Input
-        label="Descricao"
+        label="Descrição"
         value={descricao}
         setValue={valor => setDescricao(valor)}
       ></Input>
       <InputNumber
+        monetario={false}
         label="Quantidade"
         value={quantidade}
         setValue={valor => setQuantidade(valor)}
       ></InputNumber>
       <InputNumber
+        monetario={true}
         label="Valor"
         value={valor}
         setValue={valor => setValor(valor)}

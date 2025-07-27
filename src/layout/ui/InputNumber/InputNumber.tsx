@@ -5,10 +5,17 @@ interface Props {
   label: string;
   value: number;
   casasDecimais?: number;
+  monetario?: boolean;
   setValue: (valor: number) => void;
 }
 
-const Input = ({ label, value, setValue, casasDecimais = 0 }: Props) => {
+const Input = ({
+  label,
+  value,
+  monetario = false,
+  setValue,
+  casasDecimais = 0,
+}: Props) => {
   const [focus, setFocus] = useState(false);
   const [texto, setTexto] = useState('');
 
@@ -18,8 +25,12 @@ const Input = ({ label, value, setValue, casasDecimais = 0 }: Props) => {
   // Quando perde foco ou atualiza valor externo
   useEffect(() => {
     if (!focus) {
-      const numeroFormatado = formatarNumeroBrasileiro(value);
-      setTexto(numeroFormatado);
+      if (monetario) {
+        const numeroFormatado = formatarNumeroBrasileiro(value);
+        setTexto(numeroFormatado);
+        return;
+      }
+      setTexto(String(value));
     }
   }, [value, focus]);
 
@@ -41,6 +52,8 @@ const Input = ({ label, value, setValue, casasDecimais = 0 }: Props) => {
       return;
     }
 
+    console.log(somenteNumeros);
+
     // Insere casas decimais "fixas" — Ex: 123 → 1.23
     const valorComDecimal = parseFloat(
       (parseInt(somenteNumeros, 10) / Math.pow(10, casasDecimais)).toFixed(
@@ -48,8 +61,12 @@ const Input = ({ label, value, setValue, casasDecimais = 0 }: Props) => {
       )
     );
 
+    if (monetario) {
+      setTexto(formatarNumeroBrasileiro(valorComDecimal));
+    } else {
+      setTexto(String(valorComDecimal));
+    }
     setValue(valorComDecimal);
-    setTexto(formatarNumeroBrasileiro(valorComDecimal));
   };
 
   const handleFocus = () => {

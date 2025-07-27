@@ -8,9 +8,9 @@ export interface Cliente {
 
 export interface InfoCliente {
   nome: string;
-  cpf: string;
-  cnpj: string;
-  telefone: string;
+  cpf: number;
+  cnpj: number;
+  telefone: number;
   email: string;
 }
 
@@ -46,11 +46,11 @@ const clienteInicial = {
     rua: '',
   },
   infoCliente: {
-    cnpj: '',
-    cpf: '',
+    cnpj: 0,
+    cpf: 0,
     email: '',
     nome: '',
-    telefone: '',
+    telefone: 0,
   },
 };
 
@@ -65,8 +65,8 @@ export function CriarOrdemServicoProvider({ children }) {
     servicos: [],
   });
 
-  const obterTotal = () => {
-    return ordemServico.servicos.reduce(
+  const obterTotal = (servicos: ServicoCardProps[]) => {
+    return servicos.reduce(
       (acumulador, servico) => acumulador + servico.valor,
       0
     );
@@ -77,7 +77,7 @@ export function CriarOrdemServicoProvider({ children }) {
     setOrdemServico(prev => ({
       ...prev,
       servicos: [...prev.servicos, servico],
-      total: obterTotal(),
+      total: obterTotal([...prev.servicos, servico]),
     }));
   };
 
@@ -88,7 +88,9 @@ export function CriarOrdemServicoProvider({ children }) {
         ...prev.servicos,
         servico: prev.servicos.filter(servico => servico.id != servicoId),
       },
-      total: obterTotal(),
+      total: obterTotal(
+        prev.servicos.filter(servico => servico.id != servicoId)
+      ),
     }));
   };
 

@@ -7,12 +7,13 @@ import {
 import Input from '../../layout/ui/Input/Input';
 import Tela from '../../layout/LayoutPages/components/Tela/Tela';
 import Botao from '../../layout/ui/Botao/Botao';
+import InputNumber from '../../layout/ui/InputNumber/InputNumber';
 
 const TelaCliente = () => {
   // Hooks
   const { setCliente, cliente, limparCliente } = useCriarOrdemServico();
 
-  const setarInfoCliente = (valor: string, key: keyof InfoCliente) => {
+  const setarInfoCliente = (valor: string | number, key: keyof InfoCliente) => {
     setCliente(prev => ({
       ...prev,
       infoCliente: {
@@ -26,7 +27,7 @@ const TelaCliente = () => {
     setCliente(prev => ({
       ...prev,
       endereco: {
-        ...prev.endereco,
+      ...prev.endereco,
         [key]: valor,
       },
     }));
@@ -54,21 +55,21 @@ const TelaCliente = () => {
           value={cliente?.infoCliente.nome}
           setValue={valor => setarInfoCliente(valor, 'nome')}
         ></Input>
-        <Input
+        <InputNumber
           label="CPF"
           value={cliente?.infoCliente.cpf}
           setValue={valor => setarInfoCliente(valor, 'cpf')}
-        ></Input>
-        <Input
+        ></InputNumber>
+        <InputNumber
           label="CNPJ"
           value={cliente?.infoCliente.cnpj}
           setValue={valor => setarInfoCliente(valor, 'cnpj')}
-        ></Input>
-        <Input
+        ></InputNumber>
+        <InputNumber
           label="Telefone"
           value={cliente?.infoCliente.telefone}
           setValue={valor => setarInfoCliente(valor, 'telefone')}
-        ></Input>
+        ></InputNumber>
         <Input
           label="E-mail"
           value={cliente?.infoCliente.email}

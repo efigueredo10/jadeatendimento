@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import style from './Home.module.css';
 
 import Apresentacao from '../../layout/LayoutPages/components/Apresentacao/Apresentacao';
 

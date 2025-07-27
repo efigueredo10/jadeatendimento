@@ -30,7 +30,6 @@ export const GlobalContextProvider = ({ children }: Props) => {
   );
 
   const setarInfoPagina = (infoPaginaAtual: InfoPagina) => {
-    console.log('HJere');
     setGlobalState(prev => ({
       ...prev,
       infoPagina: {

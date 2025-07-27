@@ -23,6 +23,7 @@
 }
 
 .descricaoContainer {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -54,6 +55,7 @@
   flex-wrap: nowrap;
   white-space: nowrap;
   border-radius: 8px;
+  margin-bottom: 8px !important;
 }
 
 .valor {

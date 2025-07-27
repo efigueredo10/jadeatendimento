@@ -1,6 +1,5 @@
 import { memo, useEffect, type ReactNode } from 'react';
 import type { InfoPagina } from '../../../../contexts/GlobalContext/GlobalContext.types';
-import style from './Tela.module.css';
 import { useGlobalContext } from '../../../../contexts/GlobalContext/GlobalContext';
 
 interface Props {

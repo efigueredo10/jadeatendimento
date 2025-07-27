@@ -9,6 +9,7 @@ import style from './Botao.module.css';
 interface Props {
   children?: ReactNode;
   size?: 'large' | 'normal' | 'small';
+  width?: string;
   borderRadius?: string;
   icone?: ReactNode;
   onClick?: (event: MouseEvent) => void;
@@ -18,12 +19,14 @@ const Botao = ({
   children,
   size = 'normal',
   borderRadius = '8px',
+  width,
   icone,
   onClick,
 }: Props) => {
   const obterEstilosBotao = () => {
     const estilos: CSSProperties = {};
     estilos.borderRadius = borderRadius;
+    estilos.width = width;
     return estilos;
   };
 
@@ -31,7 +34,7 @@ const Botao = ({
     let classSize;
     switch (size) {
       case 'large':
-        classSize = style.lage;
+        classSize = style.large;
         break;
       case 'normal':
         classSize = style.normal;

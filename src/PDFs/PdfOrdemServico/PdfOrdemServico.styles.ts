@@ -9,44 +9,47 @@ const widthsColunas = {
   coluna3: 150,
   coluna4: 60,
   coluna5: 110,
-  coluna6: 100
+  coluna6: 100,
 };
 
 const estiloListagemHeader = {
   padding: '4px',
-  fontFamily: 'Helvetica-Bold'
+  fontFamily: 'Helvetica-Bold',
 };
 
 const estiloListagemBody = {
-  padding: '4px'
+  padding: '4px',
 };
 
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Helvetica',
     fontSize: 10,
-    padding: 24,
+    padding: 0,
     display: 'flex',
     gap: '8px',
     flexDirection: 'column',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
+  header: {},
+  infoCliente: {},
 
+  // ANTIGO
   bordaConteudo: {
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    border: `2px solid ${primaryColor}`
+    border: `2px solid ${primaryColor}`,
   },
 
   /* CABECALHO */
   cabecalho: {
     flexDirection: 'row',
-    padding: '8px'
+    padding: '8px',
   },
   cabecalho__logo: {
-    width: 80
+    width: 80,
   },
   tituloPedido: {
     backgroundColor: primaryColor,
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
     gap: '8px',
     color: '#fff',
     fontSize: 10,
-    fontFamily: 'Helvetica-Bold'
+    fontFamily: 'Helvetica-Bold',
   },
   tituloPedido2: {
     display: 'flex',
@@ -63,37 +66,41 @@ const styles = StyleSheet.create({
     gap: '8px',
     fontSize: 10,
     fontFamily: 'Helvetica-Bold',
-    borderBottom: `1px dashed ${primaryColor}`
+    borderBottom: `1px dashed ${primaryColor}`,
   },
   tituloPedidoLinha1: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
-  tituloPedidoLinha2: { display: 'flex', flexDirection: 'row', justifyContent: 'space-between' },
+  tituloPedidoLinha2: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   dados: {
     display: 'flex',
     flexDirection: 'row',
     gap: '8px',
     padding: '8px',
-    borderBottom: `1px dashed ${primaryColor}`
+    borderBottom: `1px dashed ${primaryColor}`,
   },
   dadosCliente: {
-    width: '100%'
+    width: '100%',
   },
   dadosFornecedor: {
-    width: '100%'
+    width: '100%',
   },
   dadosTitulo: {
     marginBottom: '8px',
-    fontFamily: 'Helvetica-Bold'
+    fontFamily: 'Helvetica-Bold',
   },
   linhaTipoFrete: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     gap: '8px',
-    padding: '8px'
+    padding: '8px',
     // borderBottom: `1px dashed ${primaryColor}`
   },
   listagemProdutos: {},
@@ -103,7 +110,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     color: '#fff',
     fontSize: 9,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   headerColuna0: {
     width: widthsColunas.coluna0,
@@ -114,7 +121,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    ...estiloListagemHeader
+    ...estiloListagemHeader,
   },
   headerColuna1: {
     width: widthsColunas.coluna1,
@@ -123,7 +130,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    ...estiloListagemHeader
+    ...estiloListagemHeader,
   },
   headerColuna2: {
     width: widthsColunas.coluna2,
@@ -132,7 +139,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    ...estiloListagemHeader
+    ...estiloListagemHeader,
   },
   headerColuna3: {
     width: widthsColunas.coluna3,
@@ -141,7 +148,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    ...estiloListagemHeader
+    ...estiloListagemHeader,
   },
   headerColuna4: {
     width: widthsColunas.coluna4,
@@ -150,7 +157,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    ...estiloListagemHeader
+    ...estiloListagemHeader,
   },
   headerColuna5: {
     width: widthsColunas.coluna5,
@@ -159,7 +166,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    ...estiloListagemHeader
+    ...estiloListagemHeader,
   },
   headerColuna6: {
     width: widthsColunas.coluna6,
@@ -167,7 +174,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    ...estiloListagemHeader
+    ...estiloListagemHeader,
   },
   listagemProdutosBody: {},
   linhaProduto: {
@@ -175,7 +182,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     fontSize: 9,
     fontWeight: 'bold',
-    borderBottom: `1px solid #888888`
+    borderBottom: `1px solid #888888`,
   },
   bodyColuna0: {
     backgroundColor: '#fff',
@@ -186,7 +193,7 @@ const styles = StyleSheet.create({
     minWidth: widthsColunas.coluna0,
     maxWidth: widthsColunas.coluna0,
     padding: '4px',
-    borderRight: `1px solid #888888`
+    borderRight: `1px solid #888888`,
   },
   bodyColuna1: {
     width: widthsColunas.coluna1,
@@ -195,7 +202,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    ...estiloListagemBody
+    ...estiloListagemBody,
   },
   bodyColuna2: {
     width: widthsColunas.coluna2,
@@ -204,7 +211,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    ...estiloListagemBody
+    ...estiloListagemBody,
   },
   bodyColuna3: {
     width: widthsColunas.coluna3,
@@ -213,7 +220,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    ...estiloListagemBody
+    ...estiloListagemBody,
   },
   bodyColuna4: {
     width: widthsColunas.coluna4,
@@ -222,7 +229,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    ...estiloListagemBody
+    ...estiloListagemBody,
   },
   bodyColuna5: {
     width: widthsColunas.coluna5,
@@ -231,7 +238,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    ...estiloListagemBody
+    ...estiloListagemBody,
   },
   bodyColuna6: {
     width: widthsColunas.coluna6,
@@ -239,20 +246,20 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    ...estiloListagemBody
+    ...estiloListagemBody,
   },
   linhaTotalObservacoes: {
     display: 'flex',
     justifyContent: 'space-between',
     padding: '8px',
-    gap: '8px'
+    gap: '8px',
   },
   observacoesContainer: {
-    width: '100%'
+    width: '100%',
   },
   observacoesContainerTitulo: {
     fontFamily: 'Helvetica-Bold',
-    marginBottom: '8px'
+    marginBottom: '8px',
   },
   totalContainer: {
     fontFamily: 'Helvetica-Bold',
@@ -261,27 +268,27 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'flex-end',
     flexDirection: 'row',
-    gap: '8px'
+    gap: '8px',
   },
   linhaTotalTexto: {},
   pageRodape: {
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   text: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   boldText: {
-    fontFamily: 'Helvetica-Bold'
+    fontFamily: 'Helvetica-Bold',
   },
 
   imagem: {
     maxHeight: 60,
-    objectFit: 'cover'
-  }
+    objectFit: 'cover',
+  },
 });
 
 export default styles;

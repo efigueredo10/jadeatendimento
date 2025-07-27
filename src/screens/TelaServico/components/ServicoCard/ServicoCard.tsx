@@ -5,14 +5,20 @@ import { BiEdit } from 'react-icons/bi';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import useOnClickOutside from '../../../../hooks/useOnClickOutside';
 
-interface Props {
+export interface ServicoCardProps {
+  id?: string;
   titulo: string;
   descricao: string;
   quantidade: number;
   valor: number;
 }
 
-const ServicoCard = ({ titulo, descricao, quantidade, valor }: Props) => {
+const ServicoCard = ({
+  titulo,
+  descricao,
+  quantidade,
+  valor,
+}: ServicoCardProps) => {
   // States
   const [mostrarOpcoes, setMostrarOpcoes] = useState(false);
 

@@ -12,15 +12,15 @@ const NavigateBar = () => {
     <nav>
       <div onClick={navegarTelaCliente} className={style.button}>
         <FiUser size={18} />
-        <p>Cliente</p>
+        <button>Cliente</button>
       </div>
       <div onClick={navegarTelaServicos} className={style.button}>
         <PiNotepadBold size={18} />
-        <p>Serviços</p>
+        <button>Serviços</button>
       </div>
       <div onClick={navegarTelaPDF} className={style.button}>
         <PiFilePdfBold size={18} />
-        <p>PDF</p>
+        <button>PDF</button>
       </div>
     </nav>
   );

@@ -25,16 +25,19 @@ export const PdfOrdemServico = ({ ordemServico, cliente }: Props) => {
   };
 
   const obterEnderecoFormatado = () => {
-    const rua = formatarCampoEndereco(cliente?.endereco?.rua);
+    const rua = formatarCampoEndereco(cliente?.endereco?.rua).trim();
     const numero = `${formatarCampoEndereco(
       cliente?.endereco?.numero,
       ', N° '
-    )}`;
-    const bairro = `${formatarCampoEndereco(cliente?.endereco?.bairro, ', ')}`;
+    )}`.trim();
+    const bairro = `${formatarCampoEndereco(
+      cliente?.endereco?.bairro,
+      ', '
+    )}`.trim();
     const complemento = `${formatarCampoEndereco(
       cliente?.endereco?.complemento,
       ', Complemento: '
-    )}`;
+    )}`.trim();
     return `${rua}${numero}${bairro}${complemento}`;
   };
 

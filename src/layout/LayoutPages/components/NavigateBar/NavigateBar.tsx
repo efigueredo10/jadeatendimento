@@ -1,8 +1,8 @@
-import { memo } from "react";
-import style from "./NavigateBar.module.css";
-import { FaUser } from "react-icons/fa";
-import { PiFilePdfBold, PiNotepadBold } from "react-icons/pi";
-import { useNavegar } from "../../../../hooks/useNavegar";
+import { memo } from 'react';
+import style from './NavigateBar.module.css';
+import { PiFilePdfBold, PiNotepadBold } from 'react-icons/pi';
+import { useNavegar } from '../../../../hooks/useNavegar';
+import { FiUser } from 'react-icons/fi';
 
 const NavigateBar = () => {
   // Hooks
@@ -11,15 +11,15 @@ const NavigateBar = () => {
   return (
     <nav>
       <div onClick={navegarTelaCliente} className={style.button}>
-        <FaUser />
+        <FiUser size={18} />
         <p>Cliente</p>
       </div>
       <div onClick={navegarTelaServicos} className={style.button}>
-        <PiNotepadBold />
+        <PiNotepadBold size={18} />
         <p>Serviços</p>
       </div>
       <div onClick={navegarTelaPDF} className={style.button}>
-        <PiFilePdfBold />
+        <PiFilePdfBold size={18} />
         <p>PDF</p>
       </div>
     </nav>

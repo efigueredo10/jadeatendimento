@@ -1,5 +1,5 @@
 .layoutPage {
-  height: calc(100vh - 58px) !important;
+  height: calc(100vh - 68px) !important;
   overflow: hidden;
   position: relative;
 }
@@ -9,6 +9,6 @@
   overflow-y: auto;
   position: absolute;
   top: 49px;
-  bottom: 58px;
-  height: calc(100vh - 58px - 49px) !important;
+  bottom: 68px;
+  height: calc(100vh - 68px - 49px) !important;
 }

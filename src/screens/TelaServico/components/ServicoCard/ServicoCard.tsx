@@ -1,11 +1,12 @@
-import { memo, useState } from 'react';
-import style from './ServicoCard.module.css';
-import { PiHammer } from 'react-icons/pi';
-import { BiEdit } from 'react-icons/bi';
-import { FaRegTrashAlt } from 'react-icons/fa';
-import useOnClickOutside from '../../../../hooks/useOnClickOutside';
-import { useCardAppearAnimation } from '../../../../hooks/useCardAppearAnimation';
-import { motion } from 'framer-motion';
+import { memo, useState } from "react";
+import style from "./ServicoCard.module.css";
+import { PiHammer } from "react-icons/pi";
+import { BiEdit } from "react-icons/bi";
+import { FaRegTrashAlt } from "react-icons/fa";
+import useOnClickOutside from "../../../../hooks/useOnClickOutside";
+import { useCardAppearAnimation } from "../../../../hooks/useCardAppearAnimation";
+import { motion } from "framer-motion";
+import { useCriarOrdemServico } from "../../../../contexts/CriarOrdemServicoContext/CriarOrdemServicoContext";
 
 export interface ServicoCardProps {
   id?: string;
@@ -15,12 +16,12 @@ export interface ServicoCardProps {
   valor: number;
 }
 
-const ServicoCard = ({
-  titulo,
-  descricao,
-  quantidade,
-  valor,
-}: ServicoCardProps) => {
+interface Props {
+  servico: ServicoCardProps;
+  abrirModalServicoEdicao: (servico: ServicoCardProps) => void;
+}
+
+const ServicoCard = ({ servico, abrirModalServicoEdicao }: Props) => {
   // States
   const [mostrarOpcoes, setMostrarOpcoes] = useState(false);
 
@@ -29,16 +30,25 @@ const ServicoCard = ({
 
   // Hooks
   const animation = useCardAppearAnimation();
+  const { removerServico } = useCriarOrdemServico();
 
   function formatarNumeroBrasileiro(valor: number): string {
-    return valor.toLocaleString('pt-BR', {
+    return valor.toLocaleString("pt-BR", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
   }
 
   const toogleMostrarOpcoes = () => {
-    setMostrarOpcoes(prev => !prev);
+    setMostrarOpcoes((prev) => !prev);
+  };
+
+  const excluirServico = () => {
+    removerServico(servico.id);
+  };
+
+  const editarServico = () => {
+    abrirModalServicoEdicao(servico);
   };
 
   return (
@@ -53,22 +63,24 @@ const ServicoCard = ({
         <PiHammer size={20} />
       </div>
       <div className={style.descricaoContainer}>
-        <h6>{titulo}</h6>
-        <p>{descricao}</p>
+        <h6>{servico.titulo}</h6>
+        <p>{servico.descricao}</p>
       </div>
       <div className={style.quantidadeContainer}>
-        <p className={style.tag}>{quantidade} unidades</p>
-        <p className={style.valor}>R$ {formatarNumeroBrasileiro(valor)}</p>
+        <p className={style.tag}>{servico.quantidade} unidades</p>
+        <p className={style.valor}>
+          R$ {formatarNumeroBrasileiro(servico.valor)}
+        </p>
       </div>
       {mostrarOpcoes && (
         <div className={style.opcoesContainer}>
-          <div className={style.btnOpcao}>
+          <div onClick={editarServico} className={style.btnOpcao}>
             <div className={style.iconContainer}>
               <BiEdit size={20} />
             </div>
             <p>Editar</p>
           </div>
-          <div className={style.btnOpcao}>
+          <div onClick={excluirServico} className={style.btnOpcao}>
             <div className={style.iconContainer}>
               <FaRegTrashAlt size={18} />
             </div>

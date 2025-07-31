@@ -122,7 +122,9 @@ export const PdfOrdemServico = ({ ordemServico, cliente }: Props) => {
                 <Text style={styles.observacoesContainerTitulo}>
                   Observações
                 </Text>
-                <Text>{ordemServico.observacoes}</Text>
+                <Text style={styles.observacoesContainerTexto}>
+                  {ordemServico.observacoes}
+                </Text>
               </View>
             </View>
           </View>

@@ -38,6 +38,7 @@ interface CriarOrdemServicoContextTypes {
   limparServicos: () => void;
   limparCliente: () => void;
   setarObservacao: (observacoes: string) => void;
+  editarServico: (idServico: string, servico: ServicoCardProps) => void;
 }
 
 const clienteInicial = {
@@ -122,21 +123,16 @@ export function CriarOrdemServicoProvider({ children }) {
   const removerServico = (servicoId: string) => {
     alterarOrdemServico((prev) => ({
       ...prev,
-      servicos: {
-        ...prev.servicos,
-        servico: prev.servicos.filter((servico) => servico.id != servicoId),
-      },
-      total: obterTotal(
-        prev.servicos.filter((servico) => servico.id != servicoId)
-      ),
+      servicos: [...prev.servicos.filter((servico) => servico.id != servicoId)],
+      total: obterTotal([
+        ...prev.servicos.filter((servico) => servico.id != servicoId),
+      ]),
     }));
   };
 
   const limparServicos = () => {
-    alterarOrdemServico((prev) => ({
-      ...prev,
-      servicos: [],
-      total: 0,
+    alterarOrdemServico(() => ({
+      ...ordemServicoInicial,
     }));
   };
 
@@ -151,6 +147,31 @@ export function CriarOrdemServicoProvider({ children }) {
     }));
   };
 
+  const editarServico = (idServico: string, servico: ServicoCardProps) => {
+    console.log(idServico);
+    console.log(servico);
+    console.log(ordemServico.servicos);
+    alterarOrdemServico((prev) => ({
+      ...prev,
+      servicos: prev.servicos.map((s) => {
+        console.log("[IDS]", s.id);
+        if (s.id == idServico) {
+          return servico;
+        }
+        return s;
+      }),
+
+      total: obterTotal(
+        prev.servicos.map((s) => {
+          if (s.id == idServico) {
+            return servico;
+          }
+          return s;
+        })
+      ),
+    }));
+  };
+
   return (
     <CriarOrdemServicoContext.Provider
       value={{
@@ -161,6 +182,7 @@ export function CriarOrdemServicoProvider({ children }) {
         limparServicos,
         limparCliente,
         setarObservacao,
+        editarServico,
         ordemServico,
       }}
     >

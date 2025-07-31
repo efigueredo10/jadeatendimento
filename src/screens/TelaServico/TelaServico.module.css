@@ -17,3 +17,15 @@
   display: flex;
   justify-content: space-between;
 }
+
+.botaoObservacoes {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  gap: 8px !important;
+}
+
+.textAreaInput {
+  padding: 16px !important;
+}

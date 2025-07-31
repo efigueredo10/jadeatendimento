@@ -1,26 +1,60 @@
-import { useState } from 'react';
+import { useRef, useState, useEffect, type ChangeEvent } from "react";
+import style from "./TextArea.module.css";
 
-function TextArea() {
-  const [mensagem, setMensagem] = useState('');
+interface Props {
+  value: string;
+  label: string;
+  setValue: (valor: string) => void;
+}
 
-  const handleChange = (e) => {
-    setMensagem(e.target.value);
+function TextArea({ value, label, setValue }: Props) {
+  const [focus, setFocus] = useState(false);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(event.target.value);
+
+    // Redimensionar altura
+    if (inputRef.current) {
+      inputRef.current.style.height = "auto";
+      inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+    }
   };
 
+  const obterClasseLabel = () => {
+    if (focus || (value && value.trim() !== "")) {
+      return `${style.labelSuspenso}`;
+    }
+    return "";
+  };
+
+  const setarFocoInput = () => {
+    setFocus(true);
+    inputRef?.current?.focus();
+  };
+
+  // Ajusta a altura quando o valor muda externamente
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.style.height = "auto";
+      inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+    }
+  }, [value]);
+
   return (
-    <div>
-      <label htmlFor='mensagem'>Mensagem:</label>
-      <br />
+    <div onClick={setarFocoInput} className={style.inputContainer}>
       <textarea
-        id='mensagem'
-        value={mensagem}
-        onChange={handleChange}
-        rows={4}
-        cols={50}
-        placeholder='Digite sua mensagem aqui...'
-        style={{ padding: '8px', borderRadius: '4px', resize: 'vertical' }}
+        ref={inputRef}
+        onFocus={() => setFocus(true)}
+        onBlur={() => setFocus(false)}
+        value={value}
+        onChange={handleOnChange}
+        style={{
+          resize: "none",
+          overflow: "hidden",
+        }}
       />
-      <p>Você digitou: {mensagem}</p>
+      <label className={obterClasseLabel()}>{label}</label>
     </div>
   );
 }

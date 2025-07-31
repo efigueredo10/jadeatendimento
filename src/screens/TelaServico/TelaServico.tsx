@@ -1,25 +1,29 @@
 // import { FaArrowLeft } from "react-icons/fa";
-import style from './TelaServico.module.css';
-import Apresentacao from '../../layout/LayoutPages/components/Apresentacao/Apresentacao';
-import ServicoCard from './components/ServicoCard/ServicoCard';
-import Tela from '../../layout/LayoutPages/components/Tela/Tela';
-import useModal from '../../hooks/useModal';
-import Modal from '../../layout/LayoutPages/components/Modal/Modal';
-import FormularioAddServico from './components/FormularioAddServico/FormularioAddServico';
-import { useCriarOrdemServico } from '../../contexts/CriarOrdemServicoContext/CriarOrdemServicoContext';
-import Botao from '../../layout/ui/Botao/Botao';
-import { MdAdd } from 'react-icons/md';
+import style from "./TelaServico.module.css";
+import Apresentacao from "../../layout/LayoutPages/components/Apresentacao/Apresentacao";
+import ServicoCard from "./components/ServicoCard/ServicoCard";
+import Tela from "../../layout/LayoutPages/components/Tela/Tela";
+import useModal from "../../hooks/useModal";
+import Modal from "../../layout/LayoutPages/components/Modal/Modal";
+import FormularioAddServico from "./components/FormularioAddServico/FormularioAddServico";
+import { useCriarOrdemServico } from "../../contexts/CriarOrdemServicoContext/CriarOrdemServicoContext";
+import Botao from "../../layout/ui/Botao/Botao";
+import { MdAdd } from "react-icons/md";
+import { LuClipboardPenLine } from "react-icons/lu";
+import TextArea from "../../layout/ui/TextArea/TextArea";
 
 const TelaServico = () => {
   // Hooks
   const { abrirModal, fecharModal, modalOpen } = useModal();
-  const { ordemServico, limparServicos } = useCriarOrdemServico();
+  const modalObservacoesProps = useModal();
+  const { ordemServico, limparServicos, setarObservacao } =
+    useCriarOrdemServico();
 
   return (
     <Tela
       className={style.telaContainer}
       infoTela={{
-        titulo: 'Serviços',
+        titulo: "Serviços",
       }}
       exibirToolbar={ordemServico?.servicos?.length > 0}
       toolbar={
@@ -37,6 +41,27 @@ const TelaServico = () => {
         </div>
       }
     >
+      <Botao
+        onClick={modalObservacoesProps.abrirModal}
+        icone={<LuClipboardPenLine size={16} />}
+        className={style.botaoObservacoes}
+      >
+        Observações
+      </Botao>
+
+      <Modal
+        titulo="Observações"
+        open={modalObservacoesProps.modalOpen}
+        closeModal={modalObservacoesProps.fecharModal}
+      >
+        <div className={style.textAreaInput}>
+          <TextArea
+            label="Observações"
+            value={ordemServico.observacoes}
+            setValue={setarObservacao}
+          ></TextArea>
+        </div>
+      </Modal>
       <Modal
         titulo="Adicionar Serviço"
         open={modalOpen}
@@ -47,18 +72,18 @@ const TelaServico = () => {
       {ordemServico?.servicos?.length == 0 ? (
         <Apresentacao
           botaoProps={{
-            titulo: 'Adicionar Serviço',
+            titulo: "Adicionar Serviço",
             onClick: abrirModal,
           }}
           titulo="Bora ficar rico"
           imagemProps={{
-            nomeImagem: 'money.png',
-            alt: 'Imagem de um homem sentado em uma montanha de dinheiro',
+            nomeImagem: "money.png",
+            alt: "Imagem de um homem sentado em uma montanha de dinheiro",
           }}
         ></Apresentacao>
       ) : (
         <div className={style.containerListaServicos}>
-          {ordemServico?.servicos?.map(servico => (
+          {ordemServico?.servicos?.map((servico) => (
             <ServicoCard {...servico} key={servico.id}></ServicoCard>
           ))}
         </div>

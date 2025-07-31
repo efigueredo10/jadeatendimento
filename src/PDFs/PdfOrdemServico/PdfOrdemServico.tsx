@@ -1,13 +1,13 @@
-import { Document, Image, Page, Text, View } from '@react-pdf/renderer';
-import styles from './PdfOrdemServico.styles';
-import { obterDataAtual } from '../../util/datas.util';
+import { Document, Image, Page, Text, View } from "@react-pdf/renderer";
+import styles from "./PdfOrdemServico.styles";
+import { obterDataAtual } from "../../util/datas.util";
 
-import headerImg from '../../../public/assets/img/headerJade.png';
+import headerImg from "../../../public/assets/img/headerJade.png";
 import type {
   Cliente,
   OrdemServico,
-} from '../../contexts/CriarOrdemServicoContext/CriarOrdemServicoContext';
-import { converterParaReal } from '../../util/valoresMonetarios.util';
+} from "../../contexts/CriarOrdemServicoContext/CriarOrdemServicoContext";
+import { converterParaReal } from "../../util/valoresMonetarios.util";
 
 interface Props {
   ordemServico: OrdemServico;
@@ -28,21 +28,21 @@ export const PdfOrdemServico = ({ ordemServico, cliente }: Props) => {
     const rua = formatarCampoEndereco(cliente?.endereco?.rua).trim();
     const numero = `${formatarCampoEndereco(
       cliente?.endereco?.numero,
-      ', N° '
+      ", N° "
     )}`.trim();
     const bairro = `${formatarCampoEndereco(
       cliente?.endereco?.bairro,
-      ', '
+      ", "
     )}`.trim();
     const complemento = `${formatarCampoEndereco(
       cliente?.endereco?.complemento,
-      ', Complemento: '
+      ", Complemento: "
     )}`.trim();
     return `${rua}${numero}${bairro}${complemento}`;
   };
 
   const formatarCampoEndereco = (campo: string, prefixo?: string) => {
-    return campo ? `${prefixo ? prefixo : ''}${campo}` : '';
+    return campo ? `${prefixo ? prefixo : ""}${campo}` : "";
   };
 
   return (
@@ -58,17 +58,17 @@ export const PdfOrdemServico = ({ ordemServico, cliente }: Props) => {
         </View>
         <View style={styles.infoCliente}>
           <View style={styles.clienteData}>
-            {criarTextoInfo('Cliente', cliente?.infoCliente?.nome)}
-            {criarTextoInfo('Data', obterDataAtual())}
+            {criarTextoInfo("Cliente", cliente?.infoCliente?.nome)}
+            {criarTextoInfo("Data", obterDataAtual())}
           </View>
           {cliente?.infoCliente?.cnpj &&
-            criarTextoInfo('CNPJ', cliente?.infoCliente?.cnpj)}
+            criarTextoInfo("CNPJ", cliente?.infoCliente?.cnpj)}
           {cliente?.infoCliente?.cpf &&
-            criarTextoInfo('CPF', cliente?.infoCliente?.cpf)}
-          {criarTextoInfo('Endereço', obterEnderecoFormatado())}
-          {criarTextoInfo('Cidade', cliente?.endereco?.cidade)}
-          {criarTextoInfo('Telefone', cliente?.infoCliente?.telefone)}
-          {criarTextoInfo('E-mail', cliente?.infoCliente?.email)}
+            criarTextoInfo("CPF", cliente?.infoCliente?.cpf)}
+          {criarTextoInfo("Endereço", obterEnderecoFormatado())}
+          {criarTextoInfo("Cidade", cliente?.endereco?.cidade)}
+          {criarTextoInfo("Telefone", cliente?.infoCliente?.telefone)}
+          {criarTextoInfo("E-mail", cliente?.infoCliente?.email)}
         </View>
         {ordemServico.servicos.length > 0 && (
           <View style={styles.listagem}>
@@ -90,7 +90,7 @@ export const PdfOrdemServico = ({ ordemServico, cliente }: Props) => {
             </View>
             <View style={styles.listagemProdutosBody}>
               {ordemServico?.servicos &&
-                ordemServico?.servicos.map(servico => (
+                ordemServico?.servicos.map((servico) => (
                   <View
                     key={servico.id}
                     style={styles.linhaProduto}
@@ -122,7 +122,7 @@ export const PdfOrdemServico = ({ ordemServico, cliente }: Props) => {
                 <Text style={styles.observacoesContainerTitulo}>
                   Observações
                 </Text>
-                {/* <Text>{dados.obs}</Text> */}
+                <Text>{ordemServico.observacoes}</Text>
               </View>
             </View>
           </View>

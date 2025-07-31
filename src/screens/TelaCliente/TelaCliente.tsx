@@ -1,20 +1,20 @@
-import style from './TelaCliente.module.css';
+import style from "./TelaCliente.module.css";
 import {
   useCriarOrdemServico,
   type Endereco,
   type InfoCliente,
-} from '../../contexts/CriarOrdemServicoContext/CriarOrdemServicoContext';
-import Input from '../../layout/ui/Input/Input';
-import Tela from '../../layout/LayoutPages/components/Tela/Tela';
-import Botao from '../../layout/ui/Botao/Botao';
-import InputNumber from '../../layout/ui/InputNumber/InputNumber';
+} from "../../contexts/CriarOrdemServicoContext/CriarOrdemServicoContext";
+import Input from "../../layout/ui/Input/Input";
+import Tela from "../../layout/LayoutPages/components/Tela/Tela";
+import Botao from "../../layout/ui/Botao/Botao";
+import InputNumber from "../../layout/ui/InputNumber/InputNumber";
 
 const TelaCliente = () => {
   // Hooks
   const { alterarCliente, cliente, limparCliente } = useCriarOrdemServico();
 
   const setarInfoCliente = (valor: string | number, key: keyof InfoCliente) => {
-    alterarCliente(prev => ({
+    alterarCliente((prev) => ({
       ...prev,
       infoCliente: {
         ...prev.infoCliente,
@@ -24,7 +24,7 @@ const TelaCliente = () => {
   };
 
   const setarEndereco = (valor: string, key: keyof Endereco) => {
-    alterarCliente(prev => ({
+    alterarCliente((prev) => ({
       ...prev,
       endereco: {
         ...prev.endereco,
@@ -37,7 +37,7 @@ const TelaCliente = () => {
     <Tela
       className={style.telaContainer}
       infoTela={{
-        titulo: 'Cliente',
+        titulo: "Cliente",
       }}
       exibirToolbar={true}
       toolbar={
@@ -53,27 +53,27 @@ const TelaCliente = () => {
         <Input
           label="Nome"
           value={cliente?.infoCliente?.nome}
-          setValue={valor => setarInfoCliente(valor, 'nome')}
+          setValue={(valor) => setarInfoCliente(valor, "nome")}
         ></Input>
         <InputNumber
           label="CPF"
           value={cliente?.infoCliente?.cpf}
-          setValue={valor => setarInfoCliente(valor, 'cpf')}
+          setValue={(valor) => setarInfoCliente(valor, "cpf")}
         ></InputNumber>
         <InputNumber
           label="CNPJ"
           value={cliente?.infoCliente?.cnpj}
-          setValue={valor => setarInfoCliente(valor, 'cnpj')}
+          setValue={(valor) => setarInfoCliente(valor, "cnpj")}
         ></InputNumber>
         <InputNumber
           label="Telefone"
           value={cliente?.infoCliente?.telefone}
-          setValue={valor => setarInfoCliente(valor, 'telefone')}
+          setValue={(valor) => setarInfoCliente(valor, "telefone")}
         ></InputNumber>
         <Input
           label="E-mail"
           value={cliente?.infoCliente?.email}
-          setValue={valor => setarInfoCliente(valor, 'email')}
+          setValue={(valor) => setarInfoCliente(valor, "email")}
         ></Input>
       </div>
       <div className={style.enderecoCliente}>
@@ -81,27 +81,27 @@ const TelaCliente = () => {
         <Input
           label="Cidade"
           value={cliente?.endereco?.cidade}
-          setValue={valor => setarEndereco(valor, 'cidade')}
+          setValue={(valor) => setarEndereco(valor, "cidade")}
         ></Input>
         <Input
           label="Rua"
           value={cliente?.endereco?.rua}
-          setValue={valor => setarEndereco(valor, 'rua')}
+          setValue={(valor) => setarEndereco(valor, "rua")}
         ></Input>
         <Input
           label="Bairro"
           value={cliente?.endereco?.bairro}
-          setValue={valor => setarEndereco(valor, 'bairro')}
+          setValue={(valor) => setarEndereco(valor, "bairro")}
         ></Input>
         <Input
           label="Número"
           value={cliente?.endereco?.numero}
-          setValue={valor => setarEndereco(valor, 'numero')}
+          setValue={(valor) => setarEndereco(valor, "numero")}
         ></Input>
         <Input
           label="Complemento"
           value={cliente?.endereco?.complemento}
-          setValue={valor => setarEndereco(valor, 'complemento')}
+          setValue={(valor) => setarEndereco(valor, "complemento")}
         ></Input>
       </div>
     </Tela>

@@ -1,0 +1,33 @@
+.inputContainer {
+  position: relative;
+  background-color: #f6f6f6;
+  border-radius: 8px;
+  padding: 8px !important;
+}
+
+.inputContainer label {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  transition: 0.3s;
+  opacity: 0.8;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.labelSuspenso {
+  left: 8px !important;
+  position: absolute;
+  font-size: 11px;
+  top: -8px !important;
+}
+
+.inputContainer textarea {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 12px;
+  padding: 8px !important;
+  min-height: 200px;
+}

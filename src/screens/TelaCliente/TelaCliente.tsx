@@ -6,8 +6,8 @@ import {
 } from "../../contexts/CriarOrdemServicoContext/CriarOrdemServicoContext";
 import Input from "../../layout/ui/Input/Input";
 import Tela from "../../layout/LayoutPages/components/Tela/Tela";
-import Botao from "../../layout/ui/Botao/Botao";
 import InputNumber from "../../layout/ui/InputNumber/InputNumber";
+import BotaoLimpar from "../../layout/LayoutPages/components/BotaoLimpar/BotaoLimpar";
 
 const TelaCliente = () => {
   // Hooks
@@ -42,9 +42,10 @@ const TelaCliente = () => {
       exibirToolbar={true}
       toolbar={
         <div className={style.toolbar}>
-          <Botao onClick={limparCliente} size="normal">
-            Limpar
-          </Botao>
+          <BotaoLimpar
+            mensagemConfirmacao="Tem certeza que quer limpar todos os dados do cliente?"
+            onClick={limparCliente}
+          ></BotaoLimpar>
         </div>
       }
     >

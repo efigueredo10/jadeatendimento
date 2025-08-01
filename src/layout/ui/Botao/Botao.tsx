@@ -13,6 +13,7 @@ interface Props {
   borderRadius?: string;
   icone?: ReactNode;
   className?: string;
+  tipo?: "normal" | "outline";
   onClick?: (event: MouseEvent) => void;
 }
 
@@ -23,6 +24,7 @@ const Botao = ({
   width,
   icone,
   className,
+  tipo = "normal",
   onClick,
 }: Props) => {
   const obterEstilosBotao = () => {
@@ -34,6 +36,7 @@ const Botao = ({
 
   const obterClassName = () => {
     let classSize;
+    let classTipo;
     switch (size) {
       case "large":
         classSize = style.large;
@@ -44,8 +47,17 @@ const Botao = ({
       case "small":
         classSize = style.small;
     }
-    return `${style.botao} ${classSize} ${className}`;
+    switch (tipo) {
+      case "outline":
+        classTipo = style.outline;
+        break;
+      case "normal":
+        classTipo = style.normal;
+        break;
+    }
+    return `${style.botao} ${classSize} ${className} ${classTipo}`;
   };
+
   return (
     <button
       onClick={onClick}

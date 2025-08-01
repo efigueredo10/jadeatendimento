@@ -1,17 +1,24 @@
 // hooks/useFadeIn.ts
-import { useMemo } from 'react';
-import type { Variants } from 'framer-motion';
+import { useMemo } from "react";
+import type { Variants } from "framer-motion";
 
 export function useFadeIn(duration: number = 0.5, delay: number = 0) {
   const variants: Variants = useMemo(
     () => ({
-      hidden: { opacity: 0 },
+      hidden: {
+        opacity: 0,
+        transition: {
+          duration,
+          delay,
+          ease: "easeOut",
+        },
+      },
       visible: {
         opacity: 1,
         transition: {
           duration,
           delay,
-          ease: 'easeOut',
+          ease: "easeOut",
         },
       },
     }),
@@ -19,9 +26,9 @@ export function useFadeIn(duration: number = 0.5, delay: number = 0) {
   );
 
   return {
-    initial: 'hidden',
-    animate: 'visible',
-    exit: 'hidden',
+    initial: "hidden",
+    animate: "visible",
+    exit: "hidden",
     variants,
   };
 }

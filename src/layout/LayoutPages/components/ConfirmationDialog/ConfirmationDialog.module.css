@@ -1,0 +1,14 @@
+.confirmationDialog {
+  padding: 1.5em !important;
+  border-radius: 8px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 80vw;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: end;
+}

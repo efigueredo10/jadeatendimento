@@ -16,6 +16,7 @@ import { MdAdd } from "react-icons/md";
 import { LuClipboardPenLine } from "react-icons/lu";
 import TextArea from "../../layout/ui/TextArea/TextArea";
 import { useEffect, useState } from "react";
+import BotaoLimpar from "../../layout/LayoutPages/components/BotaoLimpar/BotaoLimpar";
 
 const TelaServico = () => {
   // Hooks
@@ -54,9 +55,10 @@ const TelaServico = () => {
       exibirToolbar={ordemServico?.servicos?.length > 0}
       toolbar={
         <div className={style.toolbar}>
-          <Botao onClick={limparServicos} size="normal">
-            Limpar
-          </Botao>
+          <BotaoLimpar
+            mensagemConfirmacao="Tem certeza que quer limpar todos os serviços?"
+            onClick={limparServicos}
+          ></BotaoLimpar>
           <Botao
             onClick={abrirModal}
             size="normal"

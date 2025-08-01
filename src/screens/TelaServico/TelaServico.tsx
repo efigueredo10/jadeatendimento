@@ -69,16 +69,6 @@ const TelaServico = () => {
         </div>
       }
     >
-      {ordemServico?.servicos?.length > 0 && (
-        <Botao
-          onClick={modalObservacoesProps.abrirModal}
-          icone={<LuClipboardPenLine size={16} />}
-          className={style.botaoObservacoes}
-        >
-          Observações
-        </Botao>
-      )}
-
       <Modal
         titulo="Observações"
         open={modalObservacoesProps.modalOpen}
@@ -118,14 +108,69 @@ const TelaServico = () => {
           }}
         ></Apresentacao>
       ) : (
-        <div className={style.containerListaServicos}>
-          {ordemServico?.servicos?.map((servico) => (
-            <ServicoCard
-              servico={servico}
-              key={servico.id}
-              abrirModalServicoEdicao={abrirModalServicoEdicao}
-            ></ServicoCard>
-          ))}
+        <div className={style.containerPrincipal}>
+          <div className={style.containerListaServicos}>
+            {ordemServico?.servicos?.map((servico) => (
+              <>
+                <ServicoCard
+                  servico={servico}
+                  key={servico.id}
+                  abrirModalServicoEdicao={abrirModalServicoEdicao}
+                ></ServicoCard>
+                <ServicoCard
+                  servico={servico}
+                  key={servico.id}
+                  abrirModalServicoEdicao={abrirModalServicoEdicao}
+                ></ServicoCard>
+                <ServicoCard
+                  servico={servico}
+                  key={servico.id}
+                  abrirModalServicoEdicao={abrirModalServicoEdicao}
+                ></ServicoCard>
+                <ServicoCard
+                  servico={servico}
+                  key={servico.id}
+                  abrirModalServicoEdicao={abrirModalServicoEdicao}
+                ></ServicoCard>
+                <ServicoCard
+                  servico={servico}
+                  key={servico.id}
+                  abrirModalServicoEdicao={abrirModalServicoEdicao}
+                ></ServicoCard>
+                <ServicoCard
+                  servico={servico}
+                  key={servico.id}
+                  abrirModalServicoEdicao={abrirModalServicoEdicao}
+                ></ServicoCard>
+                <ServicoCard
+                  servico={servico}
+                  key={servico.id}
+                  abrirModalServicoEdicao={abrirModalServicoEdicao}
+                ></ServicoCard>
+                <ServicoCard
+                  servico={servico}
+                  key={servico.id}
+                  abrirModalServicoEdicao={abrirModalServicoEdicao}
+                ></ServicoCard>
+                <ServicoCard
+                  servico={servico}
+                  key={servico.id}
+                  abrirModalServicoEdicao={abrirModalServicoEdicao}
+                ></ServicoCard>
+              </>
+            ))}
+          </div>
+          {ordemServico?.servicos?.length > 0 && (
+            <div className={style.botoesObservacao}>
+              <Botao
+                onClick={modalObservacoesProps.abrirModal}
+                icone={<LuClipboardPenLine size={16} />}
+                className={style.botaoObservacoes}
+              >
+                Observações
+              </Botao>
+            </div>
+          )}
         </div>
       )}
     </Tela>

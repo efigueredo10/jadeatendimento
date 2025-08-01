@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
 }
 
 .iconeAdd {
@@ -19,13 +21,25 @@
 }
 
 .botaoObservacoes {
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
   display: flex;
   gap: 8px !important;
 }
 
 .textAreaInput {
   padding: 16px !important;
+}
+
+.containerPrincipal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 200px);
+}
+
+.botoesObservacao {
+  padding: 0 32px !important;
+  padding-top: 16px !important;
+  display: flex;
+  justify-content: end;
+  background-color: #fff;
 }
